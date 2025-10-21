@@ -1,0 +1,27 @@
+scalar Void
+
+type Mutation {
+  createUser(input: CreateUserInput!): Void
+}
+
+input CreateUserInput {
+  age: Int!
+  name: String!
+
+  # String array examples
+  nicknames: [String!]!
+  nicknamesFullNullable: [String]
+  nicknamesNullable: [String!]
+  nicknamesPartialNullable: [String]!
+
+  # Object array examples
+  skills: [SkillInput!]!
+  skillsFullNullable: [SkillInput]
+  skillsNullable: [SkillInput!]
+  skillsPartialNullable: [SkillInput]!
+}
+
+input SkillInput {
+  level: Int!
+  name: String!
+}

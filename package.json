@@ -2,9 +2,14 @@
   "name": "repro-graphql-codegen-typescript-validation-schema-array-constraints",
   "version": "1.0.0",
   "scripts": {
+    "generate": "npx graphql-codegen --config ./codegen.ts",
     "tsc": "tsc --noEmit"
   },
   "dependencies": {
-    "typescript": "5.9.3"
+    "@graphql-codegen/cli": "6.0.0",
+    "@graphql-codegen/typescript": "5.0.2",
+    "graphql-codegen-typescript-validation-schema": "0.18.1",
+    "typescript": "5.9.3",
+    "zod": "4.1.12"
   }
 }
