@@ -13,22 +13,22 @@ export const definedNonNullAnySchema = z.any().refine((v) => isDefinedNonNullAny
 
 export function CreateUserInputSchema(): z.ZodObject<Properties<CreateUserInput>> {
   return z.object({
-    age: z.number(),
-    name: z.string(),
-    nicknames: z.array(z.string()),
-    nicknamesFullNullable: z.array(z.string().nullable()).nullish(),
-    nicknamesNullable: z.array(z.string()).nullish(),
+    age: z.number().min(0).max(1),
+    name: z.string().min(10).max(11),
+    nicknames: z.array(z.string().min(20).max(21)),
+    nicknamesFullNullable: z.array(z.string().nullable()).min(30).max(31).nullish(),
+    nicknamesNullable: z.array(z.string().min(40).max(41)).min(40).max(41).nullish(),
     nicknamesPartialNullable: z.array(z.string().nullable()),
-    skills: z.array(z.lazy(() => SkillInputSchema())),
-    skillsFullNullable: z.array(z.lazy(() => SkillInputSchema().nullable())).nullish(),
-    skillsNullable: z.array(z.lazy(() => SkillInputSchema())).nullish(),
+    skills: z.array(z.lazy(() => SkillInputSchema().min(60).max(61))),
+    skillsFullNullable: z.array(z.lazy(() => SkillInputSchema().nullable())).min(70).max(71).nullish(),
+    skillsNullable: z.array(z.lazy(() => SkillInputSchema().min(80).max(81))).min(80).max(81).nullish(),
     skillsPartialNullable: z.array(z.lazy(() => SkillInputSchema().nullable()))
   })
 }
 
 export function SkillInputSchema(): z.ZodObject<Properties<SkillInput>> {
   return z.object({
-    level: z.number(),
-    name: z.string()
+    level: z.number().min(1000).max(1001),
+    name: z.string().min(1010).max(1011)
   })
 }

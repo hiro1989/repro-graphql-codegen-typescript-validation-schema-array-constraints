@@ -1,27 +1,62 @@
 scalar Void
 
+"""
+Specification: https://github.com/confuser/graphql-constraint-directive/tree/v6.0.0?tab=readme-ov-file#api
+"""
+directive @constraint(
+  """
+  Ensure number is less than or equal to
+  """
+  max: Int
+
+  """
+  Restrict array/List to a maximum length
+  """
+  maxItems: Int
+
+  """
+  Restrict string length to a maximum length
+  """
+  maxLength: Int
+
+  """
+  Ensure number is greater than or equal to
+  """
+  min: Int
+
+  """
+  Restrict array/List to a minimum length
+  """
+  minItems: Int
+
+  """
+  Restrict string length to a minimum length
+  """
+  minLength: Int
+) on ARGUMENT_DEFINITION | INPUT_FIELD_DEFINITION
+
 type Mutation {
   createUser(input: CreateUserInput!): Void
 }
 
 input CreateUserInput {
-  age: Int!
-  name: String!
+  age: Int! @constraint(min: 0, max: 1)
+  name: String! @constraint(minLength: 10, maxLength: 11)
 
   # String array examples
-  nicknames: [String!]!
-  nicknamesFullNullable: [String]
-  nicknamesNullable: [String!]
-  nicknamesPartialNullable: [String]!
+  nicknames: [String!]! @constraint(minItems: 20, maxItems: 21)
+  nicknamesFullNullable: [String] @constraint(minItems: 30, maxItems: 31)
+  nicknamesNullable: [String!] @constraint(minItems: 40, maxItems: 41)
+  nicknamesPartialNullable: [String]! @constraint(minItems: 50, maxItems: 51)
 
   # Object array examples
-  skills: [SkillInput!]!
-  skillsFullNullable: [SkillInput]
-  skillsNullable: [SkillInput!]
-  skillsPartialNullable: [SkillInput]!
+  skills: [SkillInput!]! @constraint(minItems: 60, maxItems: 61)
+  skillsFullNullable: [SkillInput] @constraint(minItems: 70, maxItems: 71)
+  skillsNullable: [SkillInput!] @constraint(minItems: 80, maxItems: 81)
+  skillsPartialNullable: [SkillInput]! @constraint(minItems: 90, maxItems: 91)
 }
 
 input SkillInput {
-  level: Int!
-  name: String!
+  level: Int! @constraint(min: 1000, max: 1001)
+  name: String! @constraint(minLength: 1010, maxLength: 1011)
 }

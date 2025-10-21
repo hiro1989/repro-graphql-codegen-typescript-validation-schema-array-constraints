@@ -16,6 +16,16 @@ const config: CodegenConfig = {
       plugins: [
         {
           "typescript-validation-schema": {
+            directives: {
+              constraint: {
+                max: "max",
+                maxItems: "max",
+                maxLength: "max",
+                min: "min",
+                minItems: "min",
+                minLength: "min",
+              },
+            },
             importFrom: "./types",
             schema: "zodv4",
           } satisfies ValidationSchemaPluginConfig,
