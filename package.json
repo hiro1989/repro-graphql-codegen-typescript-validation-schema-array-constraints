@@ -1,0 +1,7 @@
+{
+  "name": "repro-graphql-codegen-typescript-validation-schema-array-constraints",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
